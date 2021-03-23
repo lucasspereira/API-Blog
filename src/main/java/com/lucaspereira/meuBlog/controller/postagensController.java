@@ -1,4 +1,4 @@
-package com.lucaspereira.meuBlog.controller;
+	package com.lucaspereira.meuBlog.controller;
 
 import java.util.List;
 
@@ -52,5 +52,7 @@ public class postagensController {
 	@DeleteMapping ("/{id}")
 	public void delete (@PathVariable long id) {
 		repository.deleteById(id);
+		
+
 	}
 }

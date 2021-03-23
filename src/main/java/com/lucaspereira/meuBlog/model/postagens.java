@@ -6,14 +6,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.hibernate.annotations.BatchSize;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import com.sun.istack.NotNull;
 
 @Entity
 @Table (name = "Postagens")
@@ -34,6 +35,11 @@ public class postagens {
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date data = new java.sql.Date(System.currentTimeMillis());
+	
+	@ManyToOne
+	@JsonIgnoreProperties ("postagens")
+	private ModelTemas tema;
+	
 	public long getId() {
 		return id;
 	}
@@ -42,6 +48,12 @@ public class postagens {
 	}
 	public String getTitulo() {
 		return titulo;
+	}
+	public ModelTemas getTema() {
+		return tema;
+	}
+	public void setTema(ModelTemas tema) {
+		this.tema = tema;
 	}
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
@@ -57,5 +69,5 @@ public class postagens {
 	}
 	public void setData(Date data) {
 		this.data = data;
-	}; 
+	}
 }
